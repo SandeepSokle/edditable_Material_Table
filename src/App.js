@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import DeleteConfirmation from "./components/DeleteConfirmation";
 import EditDataModel from "./components/editDataModel";
 import { Table } from "./components/table/materialTable";
-import { completeData } from "./data/TableData";
 
 function App() {
   // console.log("In app")

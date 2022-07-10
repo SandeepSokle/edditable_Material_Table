@@ -2,11 +2,11 @@ import Box from "@mui/material/Box";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
+import Select from "@mui/material/Select";
 import { useEffect, useState } from "react";
 
 export default function GeneralSelectField(props) {
-  const { label, dataKey, data, setData, dropDownList ,disabled} = props;
+  const { label, dataKey, data, setData, dropDownList, disabled } = props;
   const [value, setValue] = useState("");
   useEffect(() => {
     if (dataKey && data) setValue(data[`${dataKey}`]);
@@ -21,7 +21,7 @@ export default function GeneralSelectField(props) {
   };
 
   return (
-    <Box sx={{ m:2 }}>
+    <Box sx={{ m: 2 }}>
       <FormControl fullWidth>
         <InputLabel id="demo-simple-select-label">Age</InputLabel>
         <Select
@@ -30,7 +30,7 @@ export default function GeneralSelectField(props) {
           value={value}
           label={label}
           onChange={handleChange}
-          disabled = {disabled}
+          disabled={disabled}
         >
           {dropDownList.map((ele) => {
             return <MenuItem value={ele}>{ele}</MenuItem>;
