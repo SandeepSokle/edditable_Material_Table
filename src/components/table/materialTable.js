@@ -41,35 +41,23 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
 };
 
-export const Table = () => {
+export const Table = (props) => {
+  const { data, columns, setSelectedData, handleOpen, title } = props;
   return (
     <MaterialTable
       icons={tableIcons}
-      title="Positioning Actions Column Preview"
-      columns={[
-        { title: "Name", field: "name" },
-        { title: "Surname", field: "surname" },
-        { title: "Birth Year", field: "birthYear", type: "numeric" },
-        {
-          title: "Birth Place",
-          field: "birthCity",
-          lookup: { 34: "İstanbul", 63: "Şanlıurfa" },
-        },
-      ]}
-      data={[
-        { name: "Mehmet", surname: "Baran", birthYear: 1987, birthCity: 63 },
-        {
-          name: "Zerya Betül",
-          surname: "Baran",
-          birthYear: 2017,
-          birthCity: 34,
-        },
-      ]}
+      title={title}
+      columns={columns}
+      data={data}
       actions={[
         {
           icon: () => <Edit />,
           tooltip: "Save User",
-          onClick: (event, rowData) => alert("You saved " + rowData.name),
+          onClick: (event, rowData) => {
+            alert("You saved " + rowData.name);
+            setSelectedData(rowData);
+            handleOpen();
+          },
         },
         (rowData) => ({
           icon: () => <DeleteOutline />,
