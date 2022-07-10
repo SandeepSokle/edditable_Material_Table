@@ -1,6 +1,7 @@
-import { Table } from "./components/table";
+import { Table } from "./components/table/materialTable";
 
 function App() {
+  console.log("In app")
   return (
     <div
       className="App"
@@ -15,6 +16,7 @@ function App() {
       }}
     >
       <Table />
+      table
     </div>
   );
 }
