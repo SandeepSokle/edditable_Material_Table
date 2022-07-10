@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
+import DeleteConfirmation from "./components/DeleteConfirmation";
 import EditDataModel from "./components/editDataModel";
 import { Table } from "./components/table/materialTable";
 import { completeData } from "./data/TableData";
@@ -6,12 +8,23 @@ import { completeData } from "./data/TableData";
 function App() {
   // console.log("In app")
   const [open, setOpen] = useState(false);
+  const [openD, setOpenD] = useState(false);
   const [selectedData, setSelectedData] = useState(null);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setSelectedData(null);
     setOpen(false);
   };
+
+  const handleOpenD = () => setOpenD(true);
+  const handleCloseD = () => {
+    setSelectedData(null);
+    setOpenD(false);
+  };
+
+  const tableData = useSelector((state) => {
+    return state.data;
+  });
 
   const columns = [
     { title: "First Name", field: "first_name" },
@@ -36,7 +49,7 @@ function App() {
     { name: "Phone Number", dataKey: "phone_number", type: "string" },
     { name: "Address", dataKey: "address", type: "string" },
   ];
-  
+
   return (
     <div
       className="App"
@@ -51,10 +64,11 @@ function App() {
       }}
     >
       <Table
-        data={completeData}
+        data={tableData}
         columns={columns}
         setSelectedData={setSelectedData}
         handleOpen={handleOpen}
+        handleOpenD={handleOpenD}
         title="Editable Material Table"
       />
       {open ? (
@@ -63,6 +77,16 @@ function App() {
           editableList={editableList}
           selectedData={selectedData}
           handleClose={handleClose}
+        />
+      ) : (
+        ""
+      )}
+      {openD ? (
+        <DeleteConfirmation
+          open={openD}
+          editableList={editableList}
+          selectedData={selectedData}
+          handleClose={handleCloseD}
         />
       ) : (
         ""

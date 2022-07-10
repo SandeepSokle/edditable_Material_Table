@@ -3,7 +3,7 @@ import TextField from "@mui/material/TextField";
 import { useEffect, useState } from "react";
 
 export default function GeneralInputField(props) {
-  const { label, dataKey, data, setData } = props;
+  const { label, dataKey, data, setData,disabled } = props;
   const [value, setValue] = useState(null);
   useEffect(() => {
     if (dataKey && data) setValue(data[`${dataKey}`]);
@@ -28,6 +28,7 @@ export default function GeneralInputField(props) {
         value={value || ""}
         fullWidth
         onChange={handleChange}
+        disabled = {disabled}
       />
     </Box>
   );

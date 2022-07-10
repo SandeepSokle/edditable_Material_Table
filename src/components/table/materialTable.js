@@ -42,7 +42,8 @@ const tableIcons = {
 };
 
 export const Table = (props) => {
-  const { data, columns, setSelectedData, handleOpen, title } = props;
+  const { data, columns, setSelectedData, handleOpen, handleOpenD, title } =
+    props;
   return (
     <MaterialTable
       icons={tableIcons}
@@ -54,7 +55,7 @@ export const Table = (props) => {
           icon: () => <Edit />,
           tooltip: "Save User",
           onClick: (event, rowData) => {
-            alert("You saved " + rowData.name);
+            // alert("You saved " + rowData.name);
             setSelectedData(rowData);
             handleOpen();
           },
@@ -62,8 +63,11 @@ export const Table = (props) => {
         (rowData) => ({
           icon: () => <DeleteOutline />,
           tooltip: "Delete User",
-          onClick: (event, rowData) =>
-            alert("You want to delete " + rowData.name),
+          onClick: (event, rowData) => {
+            // alert("You want to delete " + rowData.name);
+            setSelectedData(rowData);
+            handleOpenD();
+          },
           //   disabled: rowData.birthYear < 2000,
         }),
       ]}

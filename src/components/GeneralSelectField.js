@@ -6,7 +6,7 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { useEffect, useState } from "react";
 
 export default function GeneralSelectField(props) {
-  const { label, dataKey, data, setData, dropDownList } = props;
+  const { label, dataKey, data, setData, dropDownList ,disabled} = props;
   const [value, setValue] = useState("");
   useEffect(() => {
     if (dataKey && data) setValue(data[`${dataKey}`]);
@@ -30,6 +30,7 @@ export default function GeneralSelectField(props) {
           value={value}
           label={label}
           onChange={handleChange}
+          disabled = {disabled}
         >
           {dropDownList.map((ele) => {
             return <MenuItem value={ele}>{ele}</MenuItem>;

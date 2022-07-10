@@ -21,8 +21,8 @@ const style = {
   p: 4,
 };
 
-export default function EditDataModel(props) {
-  const { open, selectedData, handleClose, editableList } = props;
+export default function DeleteConfirmation(props) {
+  const { open, selectedData, editableList, handleClose } = props;
   const [newData, setNewData] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function EditDataModel(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Edit Your Data
+            Are You Want To Delete This data?
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {editableList?.map((ele) => {
@@ -50,6 +50,7 @@ export default function EditDataModel(props) {
                   dataKey={ele.dataKey}
                   data={newData}
                   setData={setNewData}
+                  disabled
                 />
               ) : (
                 <GeneralSelectField
@@ -58,6 +59,7 @@ export default function EditDataModel(props) {
                   data={newData}
                   setData={setNewData}
                   dropDownList={ele.dropDownData}
+                  disabled
                 />
               );
             })}
@@ -74,16 +76,20 @@ export default function EditDataModel(props) {
               onClick={(event) => {
                 event.preventDefault();
                 console.log(newData);
-                dispatch(action.updateData(newData));
+                dispatch(action.deleteData(newData));
                 handleClose();
               }}
             >
-              Update
+              Delete
             </Button>
-            <Button variant="text" onClick={(event) => {
-               
+            <Button
+              variant="text"
+              onClick={(event) => {
                 handleClose();
-              }}>Cancel</Button>
+              }}
+            >
+              Cancel
+            </Button>
           </Typography>
         </Box>
       </Modal>
