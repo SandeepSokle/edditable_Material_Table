@@ -11,7 +11,9 @@ export const Reducer = (state = initialData, action) => {
       });
       return [...update];
     case "ADD":
-      return [...state, action.payload];
+      return action.payload.addDetail.place === "end"
+      ? [...state, action.payload.data]
+        : [action.payload.data, ...state]
     case "DELETE":
       let remain = state.filter((ele) => {
         return ele.id !== action.payload.id;

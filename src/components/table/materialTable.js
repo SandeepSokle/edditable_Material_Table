@@ -73,6 +73,15 @@ export const Table = (props) => {
       ]}
       options={{
         actionsColumnIndex: -1,
+        rowStyle: {
+          // backgroundColor: "#EEE",
+          height: "2rem",
+          // maxWidth: "80%",
+        },
+        headerStyle: {
+          backgroundColor: '#01579b',
+          color: '#FFF'
+        }
       }}
     />
   );

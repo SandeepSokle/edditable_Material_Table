@@ -23,7 +23,7 @@ export default function GeneralSelectField(props) {
   return (
     <Box sx={{ m: 2 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Gender</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"

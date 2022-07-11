@@ -1,3 +1,5 @@
+const uuid = require("uuid").v4;
+
 const action = {
   updateData: (data) => {
     return {
@@ -5,10 +7,10 @@ const action = {
       payload: data,
     };
   },
-  addData: (data) => {
+  addData: (data, addDetail) => {
     return {
       type: "ADD",
-      payload: data,
+      payload: { data: { ...data, id: uuid() }, addDetail },
     };
   },
   deleteData: (data) => {
@@ -19,7 +21,6 @@ const action = {
   },
 };
 
-
 module.exports = {
-    action,
-  };
+  action,
+};

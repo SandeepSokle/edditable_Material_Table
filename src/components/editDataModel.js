@@ -22,11 +22,12 @@ const style = {
 };
 
 export default function EditDataModel(props) {
-  const { open, selectedData, handleClose, editableList } = props;
+  const { open, selectedData, handleClose, editableList, addDetail } = props;
   const [newData, setNewData] = useState(null);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (selectedData) setNewData(selectedData);
+    if (selectedData && !addDetail) setNewData(selectedData);
+    if (addDetail) setNewData({});
   }, [selectedData]);
 
   //   console.log("data!!", selectedData, newData);
@@ -40,7 +41,7 @@ export default function EditDataModel(props) {
       >
         <Box sx={style}>
           <Typography id="modal-modal-title" variant="h6" component="h2">
-            Edit Your Data
+            {addDetail ? "Enter Details" : "Edit Your Data"}
           </Typography>
           <Typography id="modal-modal-description" sx={{ mt: 2 }}>
             {editableList?.map((ele) => {
@@ -73,17 +74,23 @@ export default function EditDataModel(props) {
               variant="contained"
               onClick={(event) => {
                 event.preventDefault();
-                console.log(newData);
-                dispatch(action.updateData(newData));
+                // console.log(newData);
+                addDetail
+                  ? dispatch(action.addData(newData, addDetail))
+                  : dispatch(action.updateData(newData));
                 handleClose();
               }}
             >
-              Update
+              {addDetail ? "Add" : "Update"}
             </Button>
-            <Button variant="text" onClick={(event) => {
-               
+            <Button
+              variant="text"
+              onClick={(event) => {
                 handleClose();
-              }}>Cancel</Button>
+              }}
+            >
+              Cancel
+            </Button>
           </Typography>
         </Box>
       </Modal>
