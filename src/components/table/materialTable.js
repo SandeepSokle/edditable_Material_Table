@@ -79,9 +79,9 @@ export const Table = (props) => {
           // maxWidth: "80%",
         },
         headerStyle: {
-          backgroundColor: '#01579b',
-          color: '#FFF'
-        }
+          backgroundColor: "#01579b",
+          color: "#FFF",
+        },
       }}
     />
   );
